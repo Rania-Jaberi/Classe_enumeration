@@ -13,12 +13,21 @@ class Enumerate {
 enum class Difficulty {
     EASY, MEDIUM, HARD
 }
-//Utiliser une constante d'énumération
-fun main (){
+//Déplacez question1, question2 et question3 depuis main() vers la classe Quiz. Vous devez également supprimer println(question1.toString()), si ce n'est pas déjà fait.
+//Déplacez l'objet StudentProgress dans la classe Quiz.
+class Quiz {
     val question1 = Question<String>("Quoth the raven ___", "nevermore", Difficulty.MEDIUM)
     val question2 = Question<Boolean>("The sky is green. True or false", false, Difficulty.EASY)
     val question3 = Question<Int>("How many days are there between full moons?", 28, Difficulty.HARD)
-    println(question1.toString())
-//Accéder à un objet singleton
-    println("${StudentProgress.answered} of ${StudentProgress.total} answered.")
+
+    companion object StudentProgress {
+        var total: Int = 10
+        var answered: Int = 3
+    }
 }
+//Mettez à jour l'appel à println() pour référencer les propriétés avec Quiz.answered et Quiz.total. Même si ces propriétés sont déclarées dans l'objet StudentProgress, elles sont accessibles grâce à la notation par points en n'utilisant que le nom de la classe Quiz.
+
+fun main() {
+    println("${Quiz.answered} of ${Quiz.total} answered.")
+}
+//Utiliser une constante d'énumération
